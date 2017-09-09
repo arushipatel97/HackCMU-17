@@ -1,7 +1,7 @@
 package com.example.arushi.hackathon;
 
 import android.os.AsyncTask;
-        import android.os.Bundle;
+import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
         import android.widget.ListView;
@@ -31,7 +31,9 @@ public class PopulateList extends edit {
 
         mListView = (ListView) findViewById(R.id.lv_charities);
 
-        String strUrl = "http://graphapi.firstgiving.com/v1/list/organization?q=organization_name:"
+
+
+       String strUrl = "http://graphapi.firstgiving.com/v1/list/organization?q=organization_name:"
                 + "al*";
 
         DownloadTask downloadTask = new DownloadTask();
