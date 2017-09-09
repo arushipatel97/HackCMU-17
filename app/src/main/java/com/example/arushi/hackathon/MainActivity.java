@@ -61,14 +61,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private EditText iRate;
 
-//    public void saveInfo(View view){
-//        SharedPreferences sharedPref = getSharedPreferences("rate",Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putFloat("prev rate", Float.parseFloat(iRate.getText().toString()));
-//        editor.apply();
-//        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
-//    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,13 +84,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            tv_steps.setText(String.valueOf(event.values[0]));
+            tv_steps.setText(String.valueOf((int)event.values[0]));
             float current;
             Float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
             current = (float)(event.values[0]*oldR);
             steps = (int)event.values[0];
-            //android.util.Log.d("hi!!!!!!!!!!!!!!!", String.valueOf(current));
-            donationAmount.setText(String.valueOf(current));
+            donationAmount.setText(String.format("$%.2f",current/(100*100)));
         }
     }
 
@@ -113,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float current;
             Float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
             current = (float)(steps*oldR);
-            donationAmount.setText(String.valueOf(current));
+            donationAmount.setText(String.format("$%.2f",current/(100*100)));
         }
         clicked = true;
     }
