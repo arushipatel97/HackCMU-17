@@ -1,6 +1,7 @@
 package com.example.arushi.hackathon;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -23,7 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     public static final String PREFERENCES_RATE = "test";
-    private SharedPreferences mSharedPreferences;
+    public SharedPreferences mSharedPreferences;
     public static final String bleh = "";
 
     //code based on Tihomir RAdeff's video
@@ -35,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     SensorManager sensorManager;
 
-    boolean started = false;
-    boolean clicked = false;
     boolean running = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -56,10 +55,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        mSharedPreferences = getSharedPreferences(PREFERENCES_RATE, MODE_PRIVATE);
+        mSharedPreferences = getSharedPreferences(PREFERENCES_RATE, MODE_WORLD_WRITEABLE);
     }
 
-    private EditText iRate;
+    public EditText iRate;
 
     @Override
     protected void onResume() {
@@ -106,7 +105,20 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             current = (float)(steps*oldR);
             donationAmount.setText(String.format("$%.2f",current/(100*100)));
         }
-        clicked = true;
+    }
+
+
+    public void hButton(View v){
+        Button button = (Button) v;
+        Intent intent = new Intent(this, record.class);
+        startActivity(intent);
+    }
+
+
+    public void eButton(View v){
+        Button button = (Button) v;
+        Intent intent = new Intent(this, edit.class);
+        startActivity(intent);
     }
 
     @Override
