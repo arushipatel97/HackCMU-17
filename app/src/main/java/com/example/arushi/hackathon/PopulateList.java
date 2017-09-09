@@ -145,7 +145,8 @@ public class PopulateList extends edit {
                                         long l) {
                     HashMap<String,Object> click = (HashMap<String,Object>)
                             mListView.getItemAtPosition(position);
-                   // clicked = (String)click.get("Charity");
+                    clicked = (String)click.get("Charity");
+
                 }
             });
         }

@@ -92,7 +92,7 @@ tools:context="com.example.arushi.hackathon.home">
     <TextView
         android:layout_width="338dp"
         android:layout_height="61dp"
-        android:text="Please Pick an Org"
+        android:text="ACM@CMU"
         android:textSize= "20dp"
 
         android:id="@+id/charity_org"

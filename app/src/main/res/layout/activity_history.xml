@@ -18,8 +18,8 @@
         android:textSize= "30dp"
         android:id="@+id/textView"
         android:layout_gravity="center_vertical"
-        android:layout_x="241dp"
-        android:layout_y="263dp" />
+        android:layout_x="283dp"
+        android:layout_y="275dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -56,7 +56,7 @@ public class PopulateClubList extends edit {
                                     long l) {
                 Club click = (Club)
                         mListView.getItemAtPosition(position);
-         //       clickedClub = click.getName();
+                clicked = click.getName();
 
             }
         });

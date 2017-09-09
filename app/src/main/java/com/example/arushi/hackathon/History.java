@@ -17,6 +17,6 @@ public class History extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.history);
+        setContentView(R.layout.activity_history);
     }
 }

@@ -24,19 +24,24 @@ import android.content.Context;
 public class home extends MainActivity implements SensorEventListener {
 
     public static final String PREFERENCES_RATE = "test2";
+    public static final String PREFERENCES_RATE2="test3";
     public SharedPreferences mSharedPreferences;
+    public SharedPreferences tSharedPreferences;
     public static final String bleh = "";
     public static final String bleh1 = "";
+    public static final String org="";
 
     //code based on Tihomir RAdeff's video
 
     TextView tv_steps;
     TextView donationAmount;
     TextView goalAmount;
+    TextView charity_org;
 
     int steps;
     int buf = 0;
     boolean done=false;
+    public String clicked="";
 
     SensorManager sensorManager;
 
@@ -51,7 +56,7 @@ public class home extends MainActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        charity_org =(TextView) findViewById(R.id.charity_org);
         tv_steps = (TextView) findViewById(R.id.tv_steps);
         donationAmount= (TextView) findViewById(R.id.donationAmount);
         goalAmount= (TextView ) findViewById(R.id.goalAmount);
@@ -60,6 +65,7 @@ public class home extends MainActivity implements SensorEventListener {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         mSharedPreferences = getSharedPreferences(PREFERENCES_RATE, MODE_WORLD_WRITEABLE);
+        tSharedPreferences=getSharedPreferences(PREFERENCES_RATE2, MODE_WORLD_WRITEABLE);
     }
 
 
@@ -100,6 +106,13 @@ public class home extends MainActivity implements SensorEventListener {
 
                 done=false;
             }
+            SharedPreferences.Editor editor2 = tSharedPreferences.edit();
+            editor2.putString(org, clicked);
+            if (editor2.commit()){
+                Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show();}
+            String old = tSharedPreferences.getString(org, "");
+
+             charity_org.setText(old);
 
         }
     }
