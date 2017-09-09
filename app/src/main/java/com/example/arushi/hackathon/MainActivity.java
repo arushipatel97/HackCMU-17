@@ -1,6 +1,7 @@
 package com.example.arushi.hackathon;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,13 +22,20 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
+    public static final String PREFERENCES_RATE = "test";
+    private SharedPreferences mSharedPreferences;
+    public static final String bleh = "";
+
     //code based on Tihomir RAdeff's video
 
     TextView tv_steps;
     TextView donationAmount;
 
+    int steps;
+
     SensorManager sensorManager;
 
+    boolean started = false;
     boolean clicked = false;
     boolean running = false;
     /**
@@ -48,10 +56,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
+        mSharedPreferences = getSharedPreferences(PREFERENCES_RATE, MODE_PRIVATE);
     }
 
     private EditText iRate;
+
+//    public void saveInfo(View view){
+//        SharedPreferences sharedPref = getSharedPreferences("rate",Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putFloat("prev rate", Float.parseFloat(iRate.getText().toString()));
+//        editor.apply();
+//        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+//    }
 
     @Override
     protected void onResume() {
@@ -78,12 +94,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (running) {
             tv_steps.setText(String.valueOf(event.values[0]));
             float current;
-            android.util.Log.d("hi", String.valueOf(clicked));
-            if (!clicked){
-                current = 0;
-            }else {
-                current = (float) (event.values[0] * Float.parseFloat(iRate.getText().toString()));
-            }
+            Float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
+            current = (float)(event.values[0]*oldR);
+            steps = (int)event.values[0];
+            //android.util.Log.d("hi!!!!!!!!!!!!!!!", String.valueOf(current));
             donationAmount.setText(String.valueOf(current));
         }
     }
@@ -91,8 +105,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void buttonOnClick(View v){
         Button button = (Button) v;
         iRate = (EditText) findViewById(R.id.rate);
+        Float x = Float.parseFloat(iRate.getText().toString());
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putFloat(bleh, x);
+        if (editor.commit()){
+            Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+            float current;
+            Float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
+            current = (float)(steps*oldR);
+            donationAmount.setText(String.valueOf(current));
+        }
         clicked = true;
-        android.util.Log.d("should be true", String.valueOf(clicked));
     }
 
     @Override
