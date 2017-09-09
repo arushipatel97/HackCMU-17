@@ -4,7 +4,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
-        import android.widget.ListView;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
         import android.widget.SimpleAdapter;
 
         import org.json.JSONObject;
@@ -30,6 +32,7 @@ public class PopulateList extends edit {
         setContentView(R.layout.activity_populate_list);
 
         mListView = (ListView) findViewById(R.id.lv_charities);
+        mListView.setClickable(true);
 
 
 
@@ -135,6 +138,16 @@ public class PopulateList extends edit {
         @Override
         protected void onPostExecute(SimpleAdapter simpleAdapter) {
             mListView.setAdapter(simpleAdapter);
+
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position,
+                                        long l) {
+                    HashMap<String,Object> click = (HashMap<String,Object>)
+                            mListView.getItemAtPosition(position);
+                   // clicked = (String)click.get("Charity");
+                }
+            });
         }
 
     }

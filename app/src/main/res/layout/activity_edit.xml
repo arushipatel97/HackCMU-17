@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/edit"
     tools:context="com.example.arushi.hackathon.edit">
 
     <EditText
@@ -14,46 +15,75 @@
         android:layout_height="wrap_content"
         android:id="@+id/rate"
         android:hint="Input Rate(cents/(100steps))"
-        android:layout_alignParentTop="true"
+        android:layout_alignBaseline="@+id/saveGoal"
+        android:layout_alignBottom="@+id/saveGoal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
+
+        android:layout_x="53dp"
+        android:layout_y="159dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/button"
-        android:layout_below="@+id/rate"
-        android:layout_centerHorizontal="true"
-        android:onClick="buttonOnClick" />
+        android:onClick="buttonOnClick"
+        android:alpha = "0"
+
+        android:layout_above="@+id/saveGoal"
+        android:layout_alignEnd="@+id/listChairties"
+        android:layout_marginBottom="58dp"
+        android:layout_x="103dp"
+        android:layout_y="96dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="281dp"
         android:layout_height="wrap_content"
-        android:text="Pick Charity"
-        android:id="@+id/listChairties"
+        android:text="Pick Organization"
+        android:id="@+id/listCharities"
         android:onClick="charityButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/saveGoal"
+        android:alpha = "0"
+
+        android:layout_x="47dp"
+        android:layout_y="373dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/goal"
-        android:layout_marginTop="56dp"
-        android:hint="Goal ($)"
-        android:layout_below="@+id/listChairties"
-        android:layout_centerHorizontal="true" />
+        android:hint="     Goal ($)"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_x="116dp"
+        android:layout_y="277dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="221dp"
         android:layout_height="wrap_content"
         android:text="Save"
+        android:alpha = "0"
+
         android:id="@+id/saveGoal"
-        android:layout_below="@+id/goal"
-        android:layout_centerHorizontal="true"
-        android:onClick="gButton" />
-</RelativeLayout>
+        android:onClick="gButton"
+        android:layout_above="@+id/goal"
+        android:layout_toEndOf="@+id/goal"
+        android:layout_x="73dp"
+        android:layout_y="239dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="219dp"
+        android:layout_height="37dp"
+        android:text="New Button"
+        android:id="@+id/button5"
+        android:layout_x="67dp"
+        android:layout_y="479dp"
+        android:alpha="0"
+        android:onClick="orgButton" />
+</AbsoluteLayout>

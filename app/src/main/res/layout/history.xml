@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background = "@drawable/his"
     android:weightSum="1">
 
     <activity
@@ -10,18 +11,25 @@
     </activity>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Total Donated: $0.00"
-        android:id="@+id/textView2"
-        android:layout_gravity="bottom" />
+        android:text="0"
+        android:textSize= "30dp"
+        android:id="@+id/textView"
+        android:layout_gravity="center_vertical"
+        android:layout_x="241dp"
+        android:layout_y="263dp" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="History of Donations"
-        android:id="@+id/textView" />
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:textSize= "30dp"
+        android:id="@+id/textView4"
+        android:layout_gravity="center_vertical"
+        android:layout_x="282dp"
+        android:layout_y="181dp" />
 
-</LinearLayout>
+</AbsoluteLayout>

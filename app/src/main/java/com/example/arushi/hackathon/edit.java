@@ -25,6 +25,12 @@ public class edit extends home {
         startActivity(intent);
     }
 
+    public void orgButton(View v) {
+        Button button = (Button) v;
+        Intent intent = new Intent(this, PopulateClubList.class);
+        startActivity(intent);
+    }
+
     public void buttonOnClick(View v){
         Button button = (Button) v;
         iRate = (EditText) findViewById(R.id.rate);

@@ -23,7 +23,7 @@ import android.content.Context;
 
 public class home extends MainActivity implements SensorEventListener {
 
-    public static final String PREFERENCES_RATE = "test";
+    public static final String PREFERENCES_RATE = "test2";
     public SharedPreferences mSharedPreferences;
     public static final String bleh = "";
     public static final String bleh1 = "";
@@ -35,6 +35,8 @@ public class home extends MainActivity implements SensorEventListener {
     TextView goalAmount;
 
     int steps;
+    int buf = 0;
+    boolean done=false;
 
     SensorManager sensorManager;
 
@@ -84,14 +86,20 @@ public class home extends MainActivity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (running) {
-            tv_steps.setText(String.valueOf((int)event.values[0]));
+            tv_steps.setText(String.valueOf((int)event.values[0]-buf));
             float current;
             Float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
             Float temp=mSharedPreferences.getFloat(bleh1, (float)0.0);
-            current = (float)(event.values[0]*oldR);
-            steps = (int)event.values[0];
+            current = (float)((event.values[0]-buf)*oldR);
+            steps = (int)(event.values[0]-buf);
             donationAmount.setText(String.format("$%.2f",current/(100*100)));
             goalAmount.setText(String.format("$%.2f", temp));
+            if (done){
+                buf = (int)event.values[0];
+                tv_steps.setText(String.valueOf((int)event.values[0]-buf));
+
+                done=false;
+            }
 
         }
     }
@@ -107,6 +115,26 @@ public class home extends MainActivity implements SensorEventListener {
         Button button = (Button) v;
         Intent intent = new Intent(this, edit.class);
         startActivity(intent);
+    }
+
+    public void doneButton(View v) {
+        Button button = (Button) v;
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putFloat(bleh, (float)0.0);
+        editor.putFloat(bleh1, (float)0.0);
+        if (editor.commit()){
+            Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show();
+            float current;
+            float oldR = mSharedPreferences.getFloat(bleh, (float)0.0);
+            current = (float)(steps*oldR);
+            donationAmount.setText(String.format("$%.2f",current/(100*100)));
+            float oldL = mSharedPreferences.getFloat(bleh1, (float)0.0);
+            goalAmount.setText(String.format("$%.2f", oldL));
+            done=true;
+
+
+        }
+
     }
 
     @Override
