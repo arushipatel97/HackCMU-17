@@ -27,7 +27,8 @@
 
         <activity android:name=".record" />
         <activity android:name=".edit" />
-        <activity android:name=".PopulateList"></activity>
+        <activity android:name=".PopulateList" />
+        <activity android:name=".home"></activity>
     </application>
 
 </manifest>

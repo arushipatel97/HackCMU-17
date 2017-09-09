@@ -34,8 +34,26 @@
         android:layout_height="wrap_content"
         android:text="Pick Charity"
         android:id="@+id/listChairties"
-        android:layout_below="@+id/button"
+        android:onClick="charityButton"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goal"
+        android:layout_marginTop="56dp"
+        android:hint="Goal ($)"
+        android:layout_below="@+id/listChairties"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:id="@+id/saveGoal"
+        android:layout_below="@+id/goal"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="107dp"
-        android:onClick="charityButton" />
+        android:onClick="gButton" />
 </RelativeLayout>
