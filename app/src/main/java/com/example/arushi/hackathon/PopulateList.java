@@ -1,5 +1,6 @@
 package com.example.arushi.hackathon;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
@@ -146,6 +147,10 @@ public class PopulateList extends edit {
                     HashMap<String,Object> click = (HashMap<String,Object>)
                             mListView.getItemAtPosition(position);
                     clicked = (String)click.get("Charity");
+                    SharedPreferences.Editor editor2 = tSharedPreferences.edit();
+                    editor2.putString(org, clicked);
+                    i=true;
+
 
                 }
             });

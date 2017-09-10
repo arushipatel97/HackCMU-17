@@ -1,6 +1,7 @@
 package com.example.arushi.hackathon;
 
 
+        import android.content.SharedPreferences;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.view.View;
@@ -57,6 +58,9 @@ public class PopulateClubList extends edit {
                 Club click = (Club)
                         mListView.getItemAtPosition(position);
                 clicked = click.getName();
+                SharedPreferences.Editor editor2 = tSharedPreferences.edit();
+                editor2.putString(org, clicked);
+                i=true;
 
             }
         });

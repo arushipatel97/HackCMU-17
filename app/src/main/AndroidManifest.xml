@@ -30,7 +30,8 @@
         <activity android:name=".PopulateList" />
         <activity android:name=".home" />
         <activity android:name=".PopulateClubList" />
-        <activity android:name=".CustomListAdapter"></activity>
+        <activity android:name=".CustomListAdapter" />
+        <activity android:name=".histor"></activity>
     </application>
 
 </manifest>

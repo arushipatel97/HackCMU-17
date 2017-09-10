@@ -41,11 +41,12 @@ public class home extends MainActivity implements SensorEventListener {
     int steps;
     int buf = 0;
     boolean done=false;
-    public String clicked="";
+    public String clicked="hi";
 
     SensorManager sensorManager;
 
     boolean running = false;
+    public boolean i=false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -106,13 +107,15 @@ public class home extends MainActivity implements SensorEventListener {
 
                 done=false;
             }
-            SharedPreferences.Editor editor2 = tSharedPreferences.edit();
-            editor2.putString(org, clicked);
-            if (editor2.commit()){
-                Toast.makeText(this, "Done!", Toast.LENGTH_LONG).show();}
-            String old = tSharedPreferences.getString(org, "");
 
-             charity_org.setText(old);
+                String old = tSharedPreferences.getString(org, "");
+
+                charity_org.setText(old);
+                i=false;
+
+
+
+
 
         }
     }
@@ -120,7 +123,7 @@ public class home extends MainActivity implements SensorEventListener {
 
     public void hButton(View v){
         Button button = (Button) v;
-        Intent intent = new Intent(this, record.class);
+        Intent intent = new Intent(this, histor.class);
         startActivity(intent);
     }
 
